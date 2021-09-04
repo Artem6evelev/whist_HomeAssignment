@@ -31,7 +31,7 @@ class Products extends Component {
     return (
       <div>
         <Fade bottom cascade>
-          {!this.props.products ? (
+        {!this.props.products ? (
             <div>Loading...</div>
           ) : (
             <ul className="products">
@@ -74,11 +74,11 @@ class Products extends Component {
                   </p>
                   <p>{product.description}</p>
                   <p>
-                    Available Sizes:{" "}
+                    Avaiable Sizes:{" "}
                     {product.availableSizes.map((x) => (
                       <span>
                         {" "}
-                        <button className="button">{x}</button>{" "}
+                        <button className="button">{x}</button>
                       </span>
                     ))}
                   </p>
@@ -104,6 +104,9 @@ class Products extends Component {
   }
 }
 
-export default connect((state) => ({ products: state.products.items }), {
-  fetchProducts,
-})(Products);
+export default connect(
+  (state) => ({ products: state.products.filteredItems }),
+  {
+    fetchProducts,
+  }
+)(Products);
